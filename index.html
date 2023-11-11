@@ -7,15 +7,32 @@
   </head>
   <body>
     <h1>Hello, world!</h1>
-    <p>Loading data...</p>
+    <table>
+      <thead>
+        <td>X</td>
+        <td>Y</td>
+        <td>Z</td>
+      </thead>
+      <tbody>
+        <td id="x"></td>
+        <td id="y"></td>
+        <td id="z"></td>
+      </tbody>
+    </table>
 
     <script>
-      const $p = document.querySelector("p");
+      const $x = document.querySelector("#x");
+      const $y = document.querySelector("#y");
+      const $z = document.querySelector("#z");
+
       let gyroscope = new Gyroscope({ frequency: 60 });
 
       gyroscope.addEventListener("reading", (e) => {
-        $p.textContent = `x: ${gyroscope.x}; y: ${gyroscope.y}; z: ${gyroscope.z}`;
+        $x.textContent = gyroscope.x;
+        $y.textContent = gyroscope.y;
+        $z.textContent = gyroscope.z;
       });
+
       gyroscope.start();
     </script>
   </body>
