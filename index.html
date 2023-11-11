@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <p>Loading data...</p>
+
+    <script>
+      const $p = document.querySelector("p");
+      let gyroscope = new Gyroscope({ frequency: 60 });
+
+      gyroscope.addEventListener("reading", (e) => {
+        $p.textContent = `x: ${gyroscope.x}; y: ${gyroscope.y}; z: ${gyroscope.z}`;
+      });
+      gyroscope.start();
+    </script>
+  </body>
+</html>
