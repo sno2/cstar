@@ -1,0 +1,14 @@
+{
+  "name": "sextant",
+  "version": "1.0.0",
+  "description": "Team members: Jacob Duba, Carter Snook, and Thomas Daniels",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tailwindcss --watch -o tailwind.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.5"
+  }
+}
