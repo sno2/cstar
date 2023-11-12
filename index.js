@@ -12,6 +12,30 @@ const $teleporterButton = document.querySelector("#teleporter-button");
 /** The teleporter HTML element. */
 const $teleporter = document.querySelector("#teleporter");
 
+/**
+ * The teleporter locations from timeanddate.
+ *
+ * @link https://www.timeanddate.com/
+ */
+const teleporterLocations = {
+  "ames-ia": {
+    polarAngle: 42.025811,
+    solarNoon: "11:58 CST",
+  },
+  "new-york": {
+    polarAngle: 40.6970193,
+    solarNoon: "11:43 EST",
+  },
+  amboseli: {
+    polarAngle: -2.6526705,
+    solarNoon: "12:14 UTC+3",
+  },
+  kyiv: {
+    polarAngle: 50.4015698,
+    solarNoon: "11:41 UTC+2",
+  },
+};
+
 /** The output HTML element. */
 const $output = document.querySelector("#output");
 
@@ -29,31 +53,37 @@ $form.addEventListener("submit", (e) => {
   // Stop default PHP-inspired POST request behavior.
   e.preventDefault();
 
-  const currentTime = new Date();
-
   const data = new FormData($form);
 
-  const angleToPolaris = parseFloat(data.get("polarAngle"));
+  showLocation(parseFloat(data.get("polarAngle")), data.get("solarNoon"));
+});
+
+/**
+ * Shows the computed location coordinates.
+ *
+ * @param {number} polarAngle
+ * @param {string} solarNoon
+ */
+function showLocation(polarAngle, solarNoonTime) {
+  const currentTime = new Date();
 
   const solarNoonString = `${
     currentTime.getMonth() + 1
-  }/${currentTime.getDate()}/${currentTime.getFullYear()} ${data.get(
-    "solarNoon"
-  )}`;
+  }/${currentTime.getDate()}/${currentTime.getFullYear()} ${solarNoonTime}`;
 
   const solarNoon = new Date(solarNoonString);
 
   const timeAtNoonUTC =
     solarNoon.getUTCHours() * 60 + solarNoon.getUTCMinutes();
 
-  const longitude = getLongitude(angleToPolaris, timeAtNoonUTC);
+  const longitude = getLongitude(timeAtNoonUTC);
 
-  $latitude.textContent = formatAngle("latitude", angleToPolaris);
+  $latitude.textContent = formatAngle("latitude", polarAngle);
   $longitude.textContent = formatAngle("longitude", longitude);
 
   $output.classList.remove("hidden");
   $tutorial.classList.add("hidden");
-});
+}
 
 // The handle for the tutorial button.
 $tutorialButton.addEventListener("click", () => {
@@ -73,6 +103,18 @@ $teleporterButton.addEventListener("click", () => {
   $teleporterButton.classList.add("hiding");
 });
 
+// The handle for teleporters.
+for (const [location, { polarAngle, solarNoon }] of Object.entries(
+  teleporterLocations
+)) {
+  const $location = $teleporter.querySelector(`#${location}`);
+  $location.addEventListener("click", () => {
+    $form.querySelector("[name=polarAngle]").value = polarAngle;
+    $form.querySelector("[name=solarNoon]").value = solarNoon.split(" ")[0];
+    showLocation(polarAngle, solarNoon);
+  });
+}
+
 /**
  * Derived from the linked PDF but with the equations differentiated to output
  * longitude with the sunrise as a parameter.
@@ -83,7 +125,7 @@ $teleporterButton.addEventListener("click", () => {
  *
  * @link https://gml.noaa.gov/grad/solcalc/solareqns.PDF
  */
-function getLongitude(angleToPolaris, timeAtNoonUTC) {
+function getLongitude(timeAtNoonUTC) {
   /** The current time in the local time zone. */
   const currentTime = new Date();
 
