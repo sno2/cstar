@@ -1,4 +1,6 @@
-# Swan Hacks 2023 Hackathon Project
+![Logo](public/images/CSTAR-transparent.png)
+
+# CSTAR: Swan Hacks 2023 Hackathon Project
 
 Team members: Jacob Duba, Carter Snook, and Thomas Daniels
 
