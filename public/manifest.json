@@ -4,10 +4,10 @@
   "id": "cstar",
   "start_url": ".",
   "display": "standalone",
-  "orientation": "landscape",
+  "orientation": "portrait",
   "theme_color": "#111827",
   "background_color": "#111827",
-  "description": "A readable Hacker News app.",
+  "description": "Streamlining astrology to find location without GPS or Internet",
   "icons": [
     {
       "src": "/images/CSTAR-128x128.png",
