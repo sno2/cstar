@@ -1,0 +1,41 @@
+sunrise\ =\ 720-4\left(longitude+ha\right)-eqtime
+
+\\\\
+
+sunrise=720-4\cdot longitude-4\cdot ha-eqtime
+
+\\\\
+
+4\cdot longitude=720-4\cdot ha-eqtime-sunrise
+
+\\\\
+
+longitude=\frac{720-eqtime-sunrise}{4}-ha
+
+\\\\
+
+longitude=\frac{720-eqtime-sunrise}{4}-\left(\frac{tst}{4}-180\right)
+
+\\\\
+
+longitude=\frac{720-eqtime-sunrise}{4}-\frac{hr\cdot60+mn+\frac{sc}{60}}{4}-\frac{to}{4}+180
+
+\\\\
+
+to=eqtime+4\cdot longitude-60\cdot timezone
+
+\\\\
+
+longitude=\frac{720-eqtime-sunrise}{4}-\frac{hr\cdot60+mn+\frac{sc}{60}}{4}-\frac{eqtime+4\cdot longitude-60\cdot timezone}{4}+180
+
+\\\\
+
+longitude=\frac{720-eqtime-sunrise}{4}-\frac{hr\cdot60+mn+\frac{sc}{60}}{4}-\frac{eqtime+4\cdot longitude-60\cdot timezone}{4}+180
+
+\\\\
+
+longitude=\frac{720-eqtime-sunrise}{4}-\frac{hr\cdot60+mn+\frac{sc}{60}}{4}-longitude-\frac{eqtime-60\cdot timezone}{4}+180
+
+\\\\
+
+2\cdot longitude=\frac{720-eqtime-sunrise}{4}-\frac{hr\cdot60+mn+\frac{sc}{60}}{4}\frac{eqtime-60\cdot timezone}{4}+180
