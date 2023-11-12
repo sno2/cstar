@@ -1,9 +1,43 @@
 {
   "name": "CSTAR",
   "short_name": "CSTAR",
+  "id": "cstar",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#fff",
+  "orientation": "landscape",
+  "theme_color": "#111827",
+  "background_color": "#111827",
   "description": "A readable Hacker News app.",
-  "icons": []
+  "icons": [
+    {
+      "src": "/images/CSTAR-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/CSTAR-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/CSTAR.jpg",
+      "sizes": "1024x1024"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-wide.png",
+      "sizes": "1892x975",
+      "type": "image/png",
+      "platform": "web",
+      "label": "Main Screen",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/screenshot-thin.jpeg",
+      "sizes": "515x1144",
+      "platform": "mobile",
+      "label": "Main Screen (Mobile)"
+    }
+  ]
 }
