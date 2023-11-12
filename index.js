@@ -12,6 +12,9 @@ const $teleporterButton = document.querySelector("#teleporter-button");
 /** The teleporter HTML element. */
 const $teleporter = document.querySelector("#teleporter");
 
+/** Button that starts camera to align polaris */
+const $angleHelperButton = document.querySelector("#angle-helper-button");
+
 /**
  * The teleporter locations from timeanddate.
  *
@@ -238,3 +241,83 @@ function formatAngle(mode, angle) {
 // const longitude = getLongitude(latitude, angleToPolaris, timeAtNoonUTC);
 //
 // console.log({ latitude, longitude });
+
+let deviceOrientationAngle = 0;
+let hasHandledDeviceOrientationEvents = false;
+
+/**
+ * Handles device orientation updates.
+ *
+ * @param {DeviceOrientationEvent} e
+ */
+function deviceOrientationHandler(e) {
+  deviceOrientationAngle = e.beta;
+}
+
+/** Registers the device orientation handler. */
+function registerDeviceOrientationHandler() {
+  if (
+    window.DeviceOrientationEvent !== undefined &&
+    typeof window.DeviceOrientationEvent.requestPermission === "function"
+  ) {
+    // iOS 13+
+    window.DeviceOrientationEvent.requestPermission()
+      .then((response) => {
+        if (response == "granted") {
+          window.addEventListener(
+            "deviceorientation",
+            deviceOrientationHandler,
+            false
+          );
+        }
+      })
+      .catch((e) => alert(e.message));
+  } else {
+    // non iOS 13+
+    window.addEventListener(
+      "deviceorientation",
+      deviceOrientationHandler,
+      false
+    );
+  }
+}
+
+/** Modal that holds the camera stream */
+const $cameraModal = document.querySelector("#camera-modal");
+
+/** Video dom element that streams camera */
+const $videoElement = document.querySelector("#camera-video-element");
+
+/** Closes video and saves orientation */
+const $saveAngleButton = document.querySelector("#save-angle-button");
+
+$angleHelperButton.addEventListener("click", () => {
+  if (!hasHandledDeviceOrientationEvents) {
+    registerDeviceOrientationHandler();
+    hasHandledDeviceOrientationEvents = true;
+  }
+
+  $cameraModal.classList.toggle("hidden");
+  $videoElement.setAttribute("autoplay", "autoplay");
+  $saveAngleButton.addEventListener("click", () => {
+    $form.querySelector("[name=polarAngle]").value = deviceOrientationAngle;
+    $cameraModal.classList.add("hidden");
+  });
+
+  navigator.mediaDevices
+    .getUserMedia({ video: { facingMode: "environment" } }) // 'environment' tries to access the rear camera
+    .then(function (stream) {
+      $videoElement.srcObject = stream;
+    })
+    .catch(function (err) {
+      alert("Error accessing the camera: " + err);
+    });
+});
+
+$saveAngleButton.addEventListener("click", () => {
+  $videoElement.srcObject = null;
+  $cameraModal.classList.add("hidden");
+
+  // NOTE: The given angle is off by 90 degrees.
+  $form.querySelector("[name=polarAngle]").value = deviceOrientationAngle - 90;
+});

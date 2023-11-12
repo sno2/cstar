@@ -56,3 +56,15 @@ body {
     transform: translateX(0);
   }
 }
+
+#the-red-dot {
+  content: " ";
+  width: 0.2rem;
+  height: 0.2rem;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 10000;
+}

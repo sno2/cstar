@@ -20,7 +20,7 @@
           />
         </h1>
         <h2 class="md:text-xl text-slate-200 mt-3 leading-tight closed">
-          Streamlining astrology to find location without GPS or Internet
+          Streamlining astronomy to find location without GPS or Internet
         </h2>
       </div>
       <aside class="overflow-hidden hidden md:block">
@@ -51,6 +51,13 @@
             required
           />
         </label>
+        <button
+          type="button"
+          id="angle-helper-button"
+          class="ml-2 bg-green-600 transition hover:bg-green-700 p-2 rounded-lg"
+        >
+          📐
+        </button>
         <label for="solarNoon" class="block py-4">
           <div class="mr-2 md:inline-block mb-2">Solar noon:</div>
           <input
@@ -63,7 +70,7 @@
         <div>
           <input
             type="submit"
-            class="mt-4 inline-block bg-blue-500 py-2 px-3 rounded-lg text-slate-100 hover:bg-blue-600 transition hover:cursor-pointer"
+            class="mt-4 inline-block bg-blue-500 py-2 px-3 rounded-lg text-slate-100 hover:bg-blue-600 transition cursor-pointer"
             value="Help find me 🔎"
           />
           <button
@@ -94,7 +101,7 @@
           distance in degrees from the horizon to Polaris, the North Star. Find
           Polaris by locating the big dipper and following the two stars at the
           end of the cup to the North Star. We advise using your phone's
-          gyroscope to calculate this angle.
+          accelerometer to calculate this angle.
         </p>
 
         <p class="mt-2">
@@ -119,6 +126,31 @@
         >.
       </h3>
     </footer>
+    <div
+      id="camera-modal"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-slate-900 bg-opacity-90"
+    >
+      <div class="relative p-4 w-full max-w-md max-h-full">
+        <div class="relative rounded-lg shadow bg-slate-500 pb-4">
+          <div id="the-red-dot"></div>
+          <video
+            id="camera-video-element"
+            class="rounded-t-lg pointer-events-none"
+            playsinline
+            preload
+            muted
+            loop
+          ></video>
+          <button
+            type="button"
+            id="save-angle-button"
+            class="mx-auto mt-4 block bg-blue-500 py-2 px-3 rounded-lg text-slate-100 hover:bg-blue-600 transition cursor-pointer"
+          >
+            Save angle
+          </button>
+        </div>
+      </div>
+    </div>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
