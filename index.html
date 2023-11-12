@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="tailwind.css" rel="stylesheet" />
-  <title>Document</title>
-
-
-<body class="bg-slate-50 p-4">
-  <p class="text-3xl font-bold underline my-3">Latitude and Longitude Calculator!</p>
-  <input type="text" class="bg-slate-200 stroke-slate-950 p-2 rounded-lg" placeholder="Polar angle" />
-  <input type="text" class="bg-slate-200 p-2 rounded-lg" placeholder="Solar noon" />
-  <input type="submit" class="bg-blue-500 p-2 rounded-lg text-slate-100 hover:bg-blue-700 hover:cursor-pointer"
-    value="Calculate" />
-  <script type="text/javascript" src="./index.js"></script>
-</body>
-
+  <body class="bg-slate-50 p-4">
+    <p class="text-3xl font-bold underline my-3">
+      Latitude and Longitude Calculator!
+    </p>
+    <label for="polarAngle">Polar angle:</label>
+    <form id="form">
+      <input
+        name="polarAngle"
+        type="number"
+        step="any"
+        class="bg-slate-200 stroke-slate-950 p-2 rounded-lg"
+        placeholder="Polar angle"
+      />
+      <label for="solarNoon">Solar noon:</label>
+      <input
+        name="solarNoon"
+        type="time"
+        class="bg-slate-200 p-2 rounded-lg mr-1"
+        placeholder="Solar noon"
+      />
+      <input
+        type="submit"
+        class="bg-blue-500 p-2 rounded-lg text-slate-100 hover:bg-blue-700 hover:cursor-pointer"
+        value="Calculate"
+      />
+    </form>
+    <p>Form</p>
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>

@@ -1,3 +1,5 @@
+import "./index.css";
+
 /** Gets the day of the year. */
 function getDayOfYear(date) {
   const start = new Date(date.getFullYear(), 0, 0);
@@ -84,3 +86,22 @@ const timeAtNoonUTC =
 const longitude = getLongitude(latitude, angleToPolaris, timeAtNoonUTC);
 
 console.log({ latitude, longitude });
+
+const $form = document.querySelector("#form");
+
+$form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const data = new FormData($form);
+
+
+  const latitude = parseFloat(data.get("polarAngle"));
+
+  const solarNoon = new Date("Nov 11, 2023 " + data.get("solarNoon") + ":00 CST");
+
+  const timeAtNoonUTC = solarNoon.getUTCHours() * 60 + solarNoon.getUTCMinutes();
+
+  const longitude = getLongitude(latitude, angleToPolaris, timeAtNoonUTC);
+
+  console.log({ latitude, longitude });
+});

@@ -1,14 +1,21 @@
 {
   "name": "sextant",
   "version": "1.0.0",
-  "description": "Team members: Jacob Duba, Carter Snook, and Thomas Daniels",
+  "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "watch": "tailwindcss --watch -o tailwind.css"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Team members: Jacob Duba, Carter Snook, and Thomas Daniels",
+  "dependencies": {
+    "vite": "^4.4.5"
+  },
   "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
   }
 }
