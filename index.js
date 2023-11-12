@@ -3,8 +3,14 @@ import "./index.css";
 /** The form's HTML element. */
 const $form = document.querySelector("#form");
 
+/** The tutorial help button HTML element. */
+const $tutorialButton = document.querySelector("#tutorial-button");
+
 /** The output HTML element. */
 const $output = document.querySelector("#output");
+
+/** The tutorial HTML element. */
+const $tutorial = document.querySelector("#tutorial");
 
 /** The latitude span HTML element. */
 const $latitude = $output.querySelector("#latitude");
@@ -36,6 +42,13 @@ $form.addEventListener("submit", (e) => {
   $longitude.textContent = formatAngle("longitude", longitude);
 
   $output.classList.remove("hidden");
+  $tutorial.classList.add("hidden");
+});
+
+// The handle for the tutorial button.
+$tutorialButton.addEventListener("click", () => {
+  $tutorial.classList.remove("hidden");
+  $output.classList.add("hidden");
 });
 
 /**
