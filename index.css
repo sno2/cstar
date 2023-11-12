@@ -4,21 +4,21 @@
 
 @font-face {
   font-family: "SpaceGrotesk";
-  src: url("SpaceGrotesk-Bold.ttf");
+  src: url("/fonts/SpaceGrotesk-Bold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "SpaceGrotesk";
-  src: url("SpaceGrotesk-Regular.ttf");
+  src: url("/fonts/SpaceGrotesk-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "SpaceMono";
-  src: url("SpaceMono-Regular.ttf");
+  src: url("/fonts/SpaceMono-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
