@@ -4,30 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="tailwind.css" rel="stylesheet" />
   <title>Document</title>
 </head>
 
-<body>
-  <h1>Hello, world!</h1>
-  <div id="x"></div>
-  <div id="y"></div>
-  <div id="z"></div>
-
-  <script>
-    const $x = document.querySelector("#x");
-    const $y = document.querySelector("#y");
-    const $z = document.querySelector("#z");
-
-    let gyroscope = new Gyroscope({ frequency: 60 });
-
-    gyroscope.addEventListener("reading", (e) => {
-      $x.textContent = gyroscope.x;
-      $y.textContent = gyroscope.y;
-      $z.textContent = gyroscope.z;
-    });
-
-    gyroscope.start();
-  </script>
+<body class="bg-slate-50 p-4">
+  <p class="text-3xl font-bold underline my-3">Latitude and Longitude Calculator!</p>
+  <input type="text" class="bg-slate-200 stroke-slate-950 p-2 rounded-lg" placeholder="Polar angle" />
+  <input type="text" class="bg-slate-200 p-2 rounded-lg" placeholder="Solar noon" />
+  <input type="submit" class="bg-blue-500 p-2 rounded-lg text-slate-100 hover:bg-blue-700 hover:cursor-pointer"
+    value="Calculate" />
 </body>
 
 </html>
