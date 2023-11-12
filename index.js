@@ -47,6 +47,12 @@ $form.addEventListener("submit", (e) => {
 
 // The handle for the tutorial button.
 $tutorialButton.addEventListener("click", () => {
+  // Close the tutorial if it is already open.
+  if (!$tutorial.classList.contains("hidden")) {
+    $tutorial.classList.add("hidden");
+    return;
+  }
+
   $tutorial.classList.remove("hidden");
   $output.classList.add("hidden");
 });
