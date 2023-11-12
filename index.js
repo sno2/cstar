@@ -299,10 +299,6 @@ $angleHelperButton.addEventListener("click", () => {
 
   $cameraModal.classList.toggle("hidden");
   $videoElement.setAttribute("autoplay", "autoplay");
-  $saveAngleButton.addEventListener("click", () => {
-    $form.querySelector("[name=polarAngle]").value = deviceOrientationAngle;
-    $cameraModal.classList.add("hidden");
-  });
 
   navigator.mediaDevices
     .getUserMedia({ video: { facingMode: "environment" } }) // 'environment' tries to access the rear camera
