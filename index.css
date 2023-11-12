@@ -30,3 +30,29 @@ body {
 .mono {
   font-family: "SpaceMono", consolas, monospace !important;
 }
+
+#teleporter-button {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-110%, -50%);
+  padding: 1rem;
+}
+
+#teleporter {
+  /** The extra percent is required to not show glitching pixels. */
+  transform: translateX(101%);
+}
+
+#teleporter.showing {
+  animation: TeleporterShowing forwards 600ms ease;
+}
+
+@keyframes TeleporterShowing {
+  0% {
+    transform: translateX(101%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

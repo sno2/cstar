@@ -6,6 +6,12 @@ const $form = document.querySelector("#form");
 /** The tutorial help button HTML element. */
 const $tutorialButton = document.querySelector("#tutorial-button");
 
+/** The teleporter button HTML element. */
+const $teleporterButton = document.querySelector("#teleporter-button");
+
+/** The teleporter HTML element. */
+const $teleporter = document.querySelector("#teleporter");
+
 /** The output HTML element. */
 const $output = document.querySelector("#output");
 
@@ -23,20 +29,24 @@ $form.addEventListener("submit", (e) => {
   // Stop default PHP-inspired POST request behavior.
   e.preventDefault();
 
+  const currentTime = new Date();
+
   const data = new FormData($form);
 
   const angleToPolaris = parseFloat(data.get("polarAngle"));
 
-  const solarNoon = new Date(
-    "Nov 11, 2023 " + data.get("solarNoon") + ":00 CST"
-  );
+  const solarNoonString = `${
+    currentTime.getMonth() + 1
+  }/${currentTime.getDate()}/${currentTime.getFullYear()} ${data.get(
+    "solarNoon"
+  )}`;
+
+  const solarNoon = new Date(solarNoonString);
 
   const timeAtNoonUTC =
     solarNoon.getUTCHours() * 60 + solarNoon.getUTCMinutes();
 
   const longitude = getLongitude(angleToPolaris, timeAtNoonUTC);
-
-  //   console.log({ latitude: angleToPolaris, longitude });
 
   $latitude.textContent = formatAngle("latitude", angleToPolaris);
   $longitude.textContent = formatAngle("longitude", longitude);
@@ -55,6 +65,12 @@ $tutorialButton.addEventListener("click", () => {
 
   $tutorial.classList.remove("hidden");
   $output.classList.add("hidden");
+});
+
+// The handle for the teleporter button.
+$teleporterButton.addEventListener("click", () => {
+  $teleporter.classList.add("showing");
+  $teleporterButton.classList.add("hiding");
 });
 
 /**

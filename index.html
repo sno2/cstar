@@ -7,11 +7,27 @@
     <link rel="manifest" href="manifest.json" />
   </head>
   <body class="bg-gray-900 text-slate-100 p-4 min-h-screen flex flex-col">
-    <header class="pb-6 border-slate-600 border-b">
-      <h1 class="text-6xl font-bold my-3">CSTAR 🌐</h1>
-      <h2 class="sm:text-lg md:text-xl text-slate-200 mt-4 leading-tight">
-        Streamlining astrology to find location without GPS or Internet
-      </h2>
+    <header class="pb-6 border-slate-600 border-b flex justify-between">
+      <div>
+        <h1 class="text-6xl font-bold my-3">CSTAR 🌐</h1>
+        <h2
+          class="sm:text-lg md:text-xl text-slate-200 mt-4 leading-tight closed"
+        >
+          Streamlining astrology to find location without GPS or Internet
+        </h2>
+      </div>
+      <aside class="overflow-hidden sm:hidden md:block">
+        <nav
+          id="teleporter"
+          class="relative h-full grid grid-cols-2 gap-4 [&>button]:block [&>button] [&>button]:px-3 [&>button]:bg-slate-600 [&>button:hover]:bg-slate-700 [&>button]:rounded-lg"
+        >
+          <button id="teleporter-button">Enable teleportation 🤖</button>
+          <button>Ames, IA</button>
+          <button>New York, NY</button>
+          <button>New York, NY</button>
+          <button>Tel Aviv, Ukraine</button>
+        </nav>
+      </aside>
     </header>
     <main class="flex-1">
       <form id="form" class="mt-6 sm:text-md md:text-lg">
@@ -22,7 +38,7 @@
             type="number"
             step="any"
             class="bg-slate-700 stroke-slate-950 p-2 rounded-lg mono"
-            value="93.9385"
+            value="42.025811"
           />
         </label>
         <label for="solarNoon" class="block py-4">
