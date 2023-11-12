@@ -3,36 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>CSTAR 🌐</title>
+    <link rel="manifest" href="manifest.json" />
   </head>
-
-  <body class="bg-slate-50 p-4">
-    <p class="text-3xl font-bold underline my-3">
-      Latitude and Longitude Calculator!
-    </p>
-    <label for="polarAngle">Polar angle:</label>
-    <form id="form">
-      <input
-        name="polarAngle"
-        type="number"
-        step="any"
-        class="bg-slate-200 stroke-slate-950 p-2 rounded-lg"
-        placeholder="Polar angle"
-      />
-      <label for="solarNoon">Solar noon:</label>
-      <input
-        name="solarNoon"
-        type="time"
-        class="bg-slate-200 p-2 rounded-lg mr-1"
-        placeholder="Solar noon"
-      />
-      <input
-        type="submit"
-        class="bg-blue-500 p-2 rounded-lg text-slate-100 hover:bg-blue-700 hover:cursor-pointer"
-        value="Calculate"
-      />
-    </form>
-    <p>Form</p>
+  <body class="bg-gray-900 text-slate-100 p-4 min-h-screen flex flex-col">
+    <header class="pb-6 border-slate-600 border-b">
+      <h1 class="text-6xl font-bold my-3">CSTAR 🌐</h1>
+      <h2 class="text-xl text-slate-200 mt-4 leading-tight">
+        Streamlining astrology to find location without GPS or Internet
+      </h2>
+    </header>
+    <main class="flex-1">
+      <form id="form" class="mt-6 text-lg">
+        <label for="polarAngle">
+          Polar angle (degrees):
+          <input
+            name="polarAngle"
+            type="number"
+            step="any"
+            class="bg-slate-700 stroke-slate-950 ml-2 p-2 rounded-lg mono"
+            value="93.9385"
+          />
+        </label>
+        <label for="solarNoon" class="block py-4">
+          Solar noon:
+          <input
+            name="solarNoon"
+            type="time"
+            class="bg-slate-700 ml-2 p-2 rounded-lg mr-1 mono"
+            value="11:58"
+          />
+        </label>
+        <input
+          type="submit"
+          class="mt-4 block bg-blue-500 py-2 px-3 rounded-lg text-slate-100 hover:bg-blue-600 transition hover:cursor-pointer"
+          value="Help find me 🔎"
+        />
+      </form>
+      <aside
+        id="output"
+        class="hidden mt-8 bg-teal-500 inline-block px-2 py-2 rounded"
+      >
+        <h2 class="text-2xl">
+          You are at <span id="latitude"></span> <span id="longitude"></span>.
+        </h2>
+      </aside>
+    </main>
+    <footer>
+      <h3 class="text-slate-400 text-xl">
+        Made with 💓 by Jacob Duba, Carter Snook, and Thomas Daniels
+        <a
+          href="https://github.com/sno2/sextant"
+          target="_blank"
+          class="underline"
+          >in public</a
+        >.
+      </h3>
+    </footer>
     <script type="module" src="./index.js"></script>
   </body>
 </html>

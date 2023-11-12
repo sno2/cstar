@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("SpaceGrotesk-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("SpaceGrotesk-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SpaceMono";
+  src: url("SpaceMono-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "SpaceGrotesk", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.mono {
+  font-family: "SpaceMono", consolas, monospace !important;
+}

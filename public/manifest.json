@@ -1,0 +1,9 @@
+{
+  "name": "CSTAR",
+  "short_name": "CSTAR",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "A readable Hacker News app.",
+  "icons": []
+}

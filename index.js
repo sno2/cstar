@@ -1,13 +1,42 @@
 import "./index.css";
 
-/** Gets the day of the year. */
-function getDayOfYear(date) {
-  const start = new Date(date.getFullYear(), 0, 0);
-  const diff = date - start;
-  const millisecondsInADay = 1000 * 60 * 60 * 24;
-  const day = Math.floor(diff / millisecondsInADay);
-  return day;
-}
+/** The form's HTML element. */
+const $form = document.querySelector("#form");
+
+/** The output HTML element. */
+const $output = document.querySelector("#output");
+
+/** The latitude span HTML element. */
+const $latitude = $output.querySelector("#latitude");
+
+/** The longitude span HTML element. */
+const $longitude = $output.querySelector("#longitude");
+
+// The handle for form submissions.
+$form.addEventListener("submit", (e) => {
+  // Stop default PHP-inspired POST request behavior.
+  e.preventDefault();
+
+  const data = new FormData($form);
+
+  const angleToPolaris = parseFloat(data.get("polarAngle"));
+
+  const solarNoon = new Date(
+    "Nov 11, 2023 " + data.get("solarNoon") + ":00 CST"
+  );
+
+  const timeAtNoonUTC =
+    solarNoon.getUTCHours() * 60 + solarNoon.getUTCMinutes();
+
+  const longitude = getLongitude(angleToPolaris, timeAtNoonUTC);
+
+  //   console.log({ latitude: angleToPolaris, longitude });
+
+  $latitude.textContent = formatAngle("latitude", angleToPolaris);
+  $longitude.textContent = formatAngle("longitude", longitude);
+
+  $output.classList.remove("hidden");
+});
 
 /**
  * Derived from the linked PDF but with the equations differentiated to output
@@ -19,7 +48,7 @@ function getDayOfYear(date) {
  *
  * @link https://gml.noaa.gov/grad/solcalc/solareqns.PDF
  */
-function getLongitude(latitude, angleToPolaris, timeAtNoonUTC) {
+function getLongitude(angleToPolaris, timeAtNoonUTC) {
   /** The current time in the local time zone. */
   const currentTime = new Date();
 
@@ -69,39 +98,62 @@ function getLongitude(latitude, angleToPolaris, timeAtNoonUTC) {
   return longitude;
 }
 
-/** The latitude in degrees. */
-const latitude = 42.023502;
+/**
+ * Gets the day of the year.
+ *
+ * @param {Date} date The date to get the day of the year for.
+ * @returns {number} The numerical day of the year.
+ */
+function getDayOfYear(date) {
+  const start = new Date(date.getFullYear(), 0, 0);
+  const diff = date - start;
+  const millisecondsInADay = 1000 * 60 * 60 * 24;
+  const day = Math.floor(diff / millisecondsInADay);
+  return day;
+}
 
-/** The angle to polaris in degrees. */
-const angleToPolaris = 42.0308;
+/**
+ * Converts a float angle to a pretty format.
+ *
+ * @param {"longitude" | "latitude"} mode The mode to format the angle in.
+ * @param {number} angle The angle in degrees.
+ * @returns {string} The formatted angle.
+ */
+function formatAngle(mode, angle) {
+  const degrees = Math.floor(Math.abs(angle));
+  const minutes = (Math.abs(angle) - degrees) * 60;
+  const seconds = (minutes - Math.floor(minutes)) * 60;
+  const suffix =
+    angle < 0
+      ? mode === "longitude"
+        ? "W"
+        : "S"
+      : mode === "longitude"
+      ? "E"
+      : "N";
 
-/** The time of sunrise in the local time. */
-const timeAtNoon = new Date("Nov 11, 2023 11:58:00 CST");
+  return `${degrees}° ${Math.floor(minutes)}' ${Math.floor(
+    seconds
+  )}" ${suffix}`;
+}
 
-/** The time at noon in UTC minutes. */
-const timeAtNoonUTC =
-  timeAtNoon.getUTCHours() * 60 + timeAtNoon.getUTCMinutes();
-
-/** The longitude estimate. */
-const longitude = getLongitude(latitude, angleToPolaris, timeAtNoonUTC);
-
-console.log({ latitude, longitude });
-
-const $form = document.querySelector("#form");
-
-$form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const data = new FormData($form);
-
-
-  const latitude = parseFloat(data.get("polarAngle"));
-
-  const solarNoon = new Date("Nov 11, 2023 " + data.get("solarNoon") + ":00 CST");
-
-  const timeAtNoonUTC = solarNoon.getUTCHours() * 60 + solarNoon.getUTCMinutes();
-
-  const longitude = getLongitude(latitude, angleToPolaris, timeAtNoonUTC);
-
-  console.log({ latitude, longitude });
-});
+// The code below was used to estimate the longitude of Ames, IA using a given
+// angleToPolaris and the time of noon.
+//
+// /** The latitude in degrees. */
+// const latitude = 42.023502;
+//
+// /** The angle to polaris in degrees. */
+// const angleToPolaris = 42.0308;
+//
+// /** The time of noon in the local timezone. */
+// const timeAtNoon = new Date("Nov 11, 2023 11:58:00 CST");
+//
+// /** The time at noon in UTC minutes. */
+// const timeAtNoonUTC =
+//   timeAtNoon.getUTCHours() * 60 + timeAtNoon.getUTCMinutes();
+//
+// /** The longitude estimate. */
+// const longitude = getLongitude(latitude, angleToPolaris, timeAtNoonUTC);
+//
+// console.log({ latitude, longitude });
