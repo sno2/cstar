@@ -83,6 +83,10 @@ function showLocation(polarAngle, solarNoonTime) {
 
   $output.classList.remove("hidden");
   $tutorial.classList.add("hidden");
+
+  $output.href = `https://www.google.com/maps/@${polarAngle.toFixed(
+    7
+  )},${longitude.toFixed(7)},10.21z?entry=ttu`;
 }
 
 // The handle for the tutorial button.
