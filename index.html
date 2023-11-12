@@ -9,28 +9,28 @@
   <body class="bg-gray-900 text-slate-100 p-4 min-h-screen flex flex-col">
     <header class="pb-6 border-slate-600 border-b">
       <h1 class="text-6xl font-bold my-3">CSTAR 🌐</h1>
-      <h2 class="text-xl text-slate-200 mt-4 leading-tight">
+      <h2 class="sm:text-lg md:text-xl text-slate-200 mt-4 leading-tight">
         Streamlining astrology to find location without GPS or Internet
       </h2>
     </header>
     <main class="flex-1">
-      <form id="form" class="mt-6 text-lg">
+      <form id="form" class="mt-6 sm:text-md md:text-lg">
         <label for="polarAngle">
-          Polar angle (degrees):
+          <div class="mr-2 md:inline-block mb-2">Polar angle (degrees):</div>
           <input
             name="polarAngle"
             type="number"
             step="any"
-            class="bg-slate-700 stroke-slate-950 ml-2 p-2 rounded-lg mono"
+            class="bg-slate-700 stroke-slate-950 p-2 rounded-lg mono"
             value="93.9385"
           />
         </label>
         <label for="solarNoon" class="block py-4">
-          Solar noon:
+          <div class="mr-2 md:inline-block mb-2">Solar noon:</div>
           <input
             name="solarNoon"
             type="time"
-            class="bg-slate-700 ml-2 p-2 rounded-lg mr-1 mono"
+            class="bg-slate-700 p-2 rounded-lg mono"
             value="11:58"
           />
         </label>
@@ -64,24 +64,24 @@
         <p>
           The <span class="font-bold underline">polar angle</span> is the
           distance in degrees from the horizon to Polaris, the North Star. Find
-          the <span class="font-bold underline">polar angle</span> by locating
-          the big dipper and following the two stars at the end of the cup to
-          the North Star.
+          the Polaris by locating the big dipper and following the two stars at
+          the end of the cup to the North Star. We advise using your phone's
+          gyroscope to calculate this angle.
         </p>
 
         <p class="mt-2">
           The <span class="font-bold underline">solar noon</span> is the time in
-          your timezone that the Sun is directly above your location. It would
+          your timezone when the Sun is directly above your location. It would
           be best to look this up for your location before setting out on your
           offline travels. However, it can be obtained anywhere by placing a
-          stick (or similar object) into the ground. Now, the time at which the
-          stick does not have a shadow is the
+          stick (or an object of similar shape) into the ground. Now, the time
+          at which the stick does not have a shadow is the
           <span class="font-bold underline">solar noon</span>.
         </p>
       </aside>
     </main>
-    <footer class="pt-2">
-      <h3 class="text-slate-400 text-xl">
+    <footer class="pt-4">
+      <h3 class="text-slate-400 text-lg">
         Made with 💓 by Jacob Duba, Carter Snook, and Thomas Daniels
         <a
           href="https://github.com/sno2/sextant"
