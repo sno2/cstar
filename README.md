@@ -1,5 +1,4 @@
 <img src="./public/images/CSTAR-transparent.png" width="200" alt="Logo">
-<br>
 
 # CSTAR: Swan Hacks 2023 Hackathon Project
 
