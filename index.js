@@ -298,7 +298,7 @@ $angleHelperButton.addEventListener("click", () => {
   }
 
   $cameraModal.classList.toggle("hidden");
-  $videoElement.setAttribute("autoplay", "autoplay");
+ $videoElement.setAttribute("autoplay", "autoplay");
 
   navigator.mediaDevices
     .getUserMedia({ video: { facingMode: "environment" } }) // 'environment' tries to access the rear camera
